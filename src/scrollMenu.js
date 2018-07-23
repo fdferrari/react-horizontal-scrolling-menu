@@ -9,6 +9,7 @@ export const defaultSetting = {
   alignCenter: true,
   clickWhenDrag: false,
   dragging: true,
+  mouseWheel:true,
   data: [],
   xPoint: 0,
   translate: 0,
@@ -601,7 +602,8 @@ export class ScrollMenu extends React.Component {
       wrapperClass,
       innerWrapperClass,
       itemClass,
-      itemClassActive
+      itemClassActive,
+      mouseWheel
     } = this.props;
     const { translate, selected, dragging, mounted } = this.state;
 
@@ -611,7 +613,7 @@ export class ScrollMenu extends React.Component {
       <div
         className={menuClass}
         style={ menuStyle }
-        onWheel = {(e) => this.handleWheel(e)}
+        onWheel = {mouseWheel ? (e) => this.handleWheel(e): null}        
       >
 
         {arrowLeft && 
@@ -669,6 +671,7 @@ export const defaultProps = {
   transition: defaultSetting.transition,
   dragging: defaultSetting.dragging,
   clickWhenDrag: defaultSetting.clickWhenDrag,
+  mouseWheel: defaultSetting.mouseWheel,
   alignCenter: defaultSetting.alignCenter,
   wrapperClass: defaultSetting.wrapperClass,
   innerWrapperClass: defaultSetting.innerWrapperClass,
@@ -691,6 +694,7 @@ export const propTypes = {
   onUpdate: PropTypes.func,
   dragging: PropTypes.bool,
   clickWhenDrag: PropTypes.bool,
+  mouseWheel:PropTypes.bool,
   wrapperClass: PropTypes.string,
   innerWrapperClass: PropTypes.string,
   itemClass: PropTypes.string,
